@@ -95,7 +95,7 @@ class OPOption:
     '''
     优化选项
     '''
-    def __init__(self,cycleTimes: int = 2000,parentNum: int = 20, sonNumMulti: int = 7):
+    def __init__(self,cycleTimes: int = 10000,parentNum: int = 200, sonNumMulti: int = 7):
         self.cycleTimes = cycleTimes
         self.parentNum = parentNum
         self.sonNumMulti = sonNumMulti

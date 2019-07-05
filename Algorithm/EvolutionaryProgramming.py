@@ -4,6 +4,7 @@
 from Optimizer import *
 import numpy as np
 import copy
+import math
 
 class EPIndividual(OPIndividual):
     cachePool = []
@@ -36,7 +37,7 @@ class EPIndividual(OPIndividual):
             item.argument = []
             while True:
                 for i in range(OPIndividual.numberOfArgument):
-                    newValue = self.argument[i] + self.standardDeviation[i]* np.random.normal()
+                    newValue = self.argument[i] + math.sqrt(math.fabs(self.fitness))* np.random.normal()
                     item.argument.append(newValue)
                 if item.isFitRestrain():
                     item.caculateFitness()
@@ -52,7 +53,7 @@ class EPIndividual(OPIndividual):
 
 
 class EPOption(OPOption):
-    def __init__(self,cycleTimes: int = 200,parentNum: int = 200, sonNumMulti: int = 7,Q = 0.9):
+    def __init__(self,cycleTimes: int = 10000,parentNum: int = 100, sonNumMulti: int = 7,Q = 0.2):
         super(EPOption,self).__init__(cycleTimes=cycleTimes,parentNum=parentNum, sonNumMulti= sonNumMulti)
         self.Q = Q
 class EPOptimizer(Optimizer):
@@ -71,9 +72,6 @@ class EPOptimizer(Optimizer):
         OPIndividual.minAndMax = (inputParam.minArray, inputParam.maxArray)
         self.initPopulation(self.option.parentNum)
         for index in range(self.option.cycleTimes):
-            ss = 0.2
-            if index > 50:
-                ss = self.sucssTime / index
             self.mutating(self.option.sonNumMulti)
             self.select(self.option.parentNum,Q=self.option.Q)
             self.optiHistory.append(self.fitness.fitness)

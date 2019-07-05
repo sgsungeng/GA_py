@@ -84,7 +84,7 @@ class GAOption(OPOption):
     '''
     遗传算法进化参数
     '''
-    def __init__(self,cycleTimes: int = 20000,parentNum: int = 20, sonNumMulti: int = 0,crossRate:float = 0.7,mutateRate:float= 0.5,selectType:int = 1):
+    def __init__(self,cycleTimes: int = 10000,parentNum: int = 200, sonNumMulti: int = 0,crossRate:float = 0.7,mutateRate:float= 0.1,selectType:int = 1):
         '''
         遗传算法进化参数
         :param cycleTimes: 循环次数
@@ -127,7 +127,7 @@ class GAOptimizer(Optimizer):
         GAIndividual.setStepArray(stepArray)
 
         if inputParam.numberOfVar >= 5:
-            self.option.populationSize = 200
+            self.option.parentNum = max(self.option.parentNum,200)
 
         self.initPopulation(self.option.parentNum)
         self.population.sort(reverse=True)

@@ -55,7 +55,7 @@ class ESIndividual(OPIndividual):
         return re
 
 class ESOption(OPOption):
-    def __init__(self,cycleTimes: int = 300,parentNum: int = 80, sonNumMulti: int = 7,c_i = 1.22, c_d = 0.81):
+    def __init__(self,cycleTimes: int = 10000,parentNum: int = 200, sonNumMulti: int = 7,c_i = 1.22, c_d = 0.81):
         super(ESOption,self).__init__(cycleTimes=cycleTimes,parentNum=parentNum, sonNumMulti= sonNumMulti)
         self.c_i = c_i
         self.c_d = c_d
@@ -78,7 +78,7 @@ class ESOPtimizer(Optimizer):
         for index in range(self.option.cycleTimes):
             ss = 0.2
             if index > 50:
-                ss = self.sucssTime / index + 0.1
+                ss = self.sucssTime / index + 0.1 # 为了增大变异范围 加了0.1
             self.mutating(self.option.sonNumMulti,ss)
             self.select(self.option.parentNum)
             self.optiHistory.append(self.fitness.fitness)

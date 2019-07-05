@@ -50,7 +50,7 @@ class PSOIndividual(OPIndividual):
                     self.pBest = self.argument
                 break
 class PSOOption(OPOption):
-    def __init__(self, cycleTimes: int = 100000, parentNum: int = 20, sonNumMulti: int = 7,w:float = 1,c1:float = 1,c2:float=0.5 ):
+    def __init__(self, cycleTimes: int = 10000, parentNum: int = 200, sonNumMulti: int = 7,w:float = 1,c1:float = 1,c2:float=0.5 ):
         '''
         粒子群优化参数
         :param cycleTimes:

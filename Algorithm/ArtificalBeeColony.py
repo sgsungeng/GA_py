@@ -67,7 +67,7 @@ class ABCIndividual(OPIndividual):
 
 
 class ABCOption(OPOption):
-    def __init__(self,cycleTimes: int = 500,parentNum: int = 100, sonNumMulti: int = 0,maxFlag: int = 5,numnberOfemploye:float = 0.7):
+    def __init__(self,cycleTimes: int = 10000,parentNum: int = 200, sonNumMulti: int = 0,maxFlag: int = 5,numnberOfemploye:float = 0.7):
         super(ABCOption,self).__init__(cycleTimes=cycleTimes,parentNum=parentNum)
         self.maxFlag = maxFlag #最大停留时间
         self.numberOFemployer =numnberOfemploye
